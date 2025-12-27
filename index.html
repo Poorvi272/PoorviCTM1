@@ -3,42 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <title>SeekOut Signal</title>
+
+  <!-- Stranger Things–style font -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="screen" id="screen-name">
-  <p class="glitch">Signal detected.</p>
-  <input type="text" id="username" placeholder="Enter your name">
-  <button onclick="startSignal()">Respond</button>
-</div>
+  <div class="screen" id="screen-name">
+    <p class="glitch big">SIGNAL DETECTED</p>
+    <input type="text" id="username" placeholder="ENTER YOUR NAME">
+    <button onclick="startSignal()">RESPOND</button>
+  </div>
 
-<div class="screen hidden" id="screen-story">
-  <p id="story-text"></p>
-  <button onclick="startTest()">Continue</button>
-</div>
+  <div class="screen hidden" id="screen-story">
+    <p id="story-text" class="story"></p>
+    <button onclick="startTest()">CONTINUE</button>
+  </div>
 
-<div class="screen hidden" id="screen-question">
-  <p class="glitch">Test Incoming</p>
-  <p id="question-text"></p>
-  <input type="text" id="answer" placeholder="Your answer">
-  <button onclick="submitAnswer()">Transmit</button>
-</div>
+  <div class="screen hidden" id="screen-question">
+    <p class="glitch">TEST INCOMING</p>
+    <p id="question-text" class="story"></p>
+    <input type="text" id="answer" placeholder="YOUR ANSWER">
+    <button onclick="submitAnswer()">TRANSMIT</button>
+  </div>
 
-<div class="screen hidden" id="screen-success">
-  <p class="glitch">Signal stabilised.</p>
-  <p>You noticed the pattern.</p>
-  <p><b>SeekOut | 9–11 January</b></p>
-  <p>Enter the Upside Down.</p>
-</div>
+  <div class="screen hidden" id="screen-success">
+    <p class="glitch big">SIGNAL STABILISED</p>
+    <p class="story">YOU NOTICED THE PATTERN.</p>
+    <p class="story highlight">SEEKOUT · 9–11 JANUARY</p>
+    <p class="story">ENTER THE UPSIDE DOWN.</p>
+  </div>
 
-<div class="screen hidden" id="screen-fail">
-  <p class="glitch">Signal disrupted.</p>
-  <p>Most people miss the first sign.</p>
-  <p><b>SeekOut | 9–11 January</b></p>
-  <p>You’ll get another chance in the hunt.</p>
-</div>
+  <div class="screen hidden" id="screen-fail">
+    <p class="glitch big">SIGNAL DISRUPTED</p>
+    <p class="story">MOST PEOPLE MISS THE FIRST SIGN.</p>
+    <p class="story highlight">SEEKOUT · 9–11 JANUARY</p>
+    <p class="story">YOU’LL GET ANOTHER CHANCE IN THE HUNT.</p>
+  </div>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
