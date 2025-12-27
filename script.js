@@ -10,44 +10,11 @@ const questions = [
 ];
 
 // ===============================
-// BACKGROUND AUDIO (PRE-RECORDED)
+// BACKGROUND AUDIO (CONTINUOUS)
 // ===============================
 const backgroundAudio = new Audio("signal.mp3");
 backgroundAudio.loop = true;
-backgroundAudio.volume = 0;
-
-// Mobile-friendly volume
-const TARGET_VOLUME = window.innerWidth < 600 ? 0.35 : 0.5;
-
-// ===============================
-// AUDIO HELPERS
-// ===============================
-function fadeInAudio() {
-  backgroundAudio.play();
-  let vol = 0;
-  const fade = setInterval(() => {
-    if (vol < TARGET_VOLUME) {
-      vol += 0.05;
-      backgroundAudio.volume = vol;
-    } else {
-      clearInterval(fade);
-    }
-  }, 200);
-}
-
-function fadeOutAudio() {
-  let vol = backgroundAudio.volume;
-  const fade = setInterval(() => {
-    if (vol > 0.05) {
-      vol -= 0.05;
-      backgroundAudio.volume = vol;
-    } else {
-      backgroundAudio.pause();
-      backgroundAudio.currentTime = 0;
-      clearInterval(fade);
-    }
-  }, 200);
-}
+backgroundAudio.volume = 1.0; // 🔊 FULL VOLUME
 
 // ===============================
 // START EXPERIENCE
@@ -56,13 +23,13 @@ function startSignal() {
   const name = document.getElementById("username").value.trim();
   if (!name) return;
 
-  // ACTIVATE VIDEO MODE
+  // SHOW VIDEO + OVERLAY
   document.getElementById("bg-video").classList.remove("hidden-video");
   document.querySelector(".overlay").classList.remove("hidden-video");
   document.body.classList.add("video-active");
 
-  // ▶️ AUDIO STARTS WITH VIDEO
-  fadeInAudio();
+  // ▶️ START AUDIO WITH VIDEO
+  backgroundAudio.play();
 
   // MOVE TO STORY SCREEN
   document.getElementById("screen-name").classList.add("hidden");
@@ -77,13 +44,9 @@ THIS IS WHERE IT BEGINS.`;
 }
 
 // ===============================
-// START QUESTION
+// START QUESTION (AUDIO CONTINUES)
 // ===============================
 function startTest() {
-
-  // FADE OUT AUDIO BEFORE QUESTION
-  fadeOutAudio();
-
   document.getElementById("screen-story").classList.add("hidden");
   document.getElementById("screen-question").classList.remove("hidden");
 
