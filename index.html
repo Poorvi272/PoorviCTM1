@@ -4,12 +4,18 @@
   <meta charset="UTF-8">
   <title>SeekOut Signal</title>
 
-  <!-- Stranger Things–style font -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <!-- BACKGROUND VIDEO (HIDDEN INITIALLY) -->
+  <video autoplay muted loop playsinline id="bg-video" class="hidden-video">
+    <source src="videos/animation.mp4" type="videos/mp4">
+  </video>
+
+  <!-- DARK OVERLAY OVER VIDEO -->
+  <div class="overlay hidden-video"></div>
 
   <div class="screen" id="screen-name">
     <p class="glitch big">SIGNAL DETECTED</p>
@@ -46,3 +52,4 @@
   <script src="script.js"></script>
 </body>
 </html>
+
