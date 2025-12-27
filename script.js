@@ -1,4 +1,3 @@
-// QUESTION BANK (5)
 const questions = [
   { q: "IF LHC BECOMES SLH IN THE UPSIDE DOWN, WHAT DOES SOM BECOME?", a: "MOS" },
   { q: "INSTI REVERSED IS?", a: "ITSNI" },
@@ -7,12 +6,18 @@ const questions = [
   { q: "IF LEFT BECOMES TFEL, WHAT DOES RIGHT BECOME?", a: "THGIR" }
 ];
 
-// START STORY
 function startSignal() {
   const name = document.getElementById("username").value.trim();
   if (!name) return;
 
   localStorage.setItem("playerName", name);
+
+  // SHOW VIDEO + OVERLAY
+  document.getElementById("bg-video").classList.remove("hidden-video");
+  document.querySelector(".overlay").classList.remove("hidden-video");
+
+  // REMOVE FOG BACKGROUND
+  document.body.classList.add("video-active");
 
   document.getElementById("screen-name").classList.add("hidden");
   document.getElementById("screen-story").classList.remove("hidden");
@@ -22,12 +27,9 @@ function startSignal() {
 
 SOMETHING IS WRONG AT INSTI.
 SIGNALS ARE BLEEDING THROUGH.
-PLACES DON’T BEHAVE THE SAME.
-
-NOTHING HERE IS RANDOM.`;
+THIS IS WHERE IT BEGINS.`;
 }
 
-// ASSIGN RANDOM QUESTION (ONCE PER USER)
 function startTest() {
   document.getElementById("screen-story").classList.add("hidden");
   document.getElementById("screen-question").classList.remove("hidden");
@@ -44,7 +46,6 @@ function startTest() {
   document.getElementById("question-text").innerText = questionObj.q;
 }
 
-// CHECK ANSWER
 function submitAnswer() {
   const userAnswer = document.getElementById("answer").value.trim().toUpperCase();
   const correct = JSON.parse(localStorage.getItem("assignedQuestion")).a;
