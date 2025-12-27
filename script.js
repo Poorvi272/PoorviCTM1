@@ -1,3 +1,6 @@
+// ===============================
+// QUESTION BANK
+// ===============================
 const questions = [
   { q: "IF LHC BECOMES SLH IN THE UPSIDE DOWN, WHAT DOES SOM BECOME?", a: "MOS" },
   { q: "INSTI REVERSED IS?", a: "ITSNI" },
@@ -6,6 +9,49 @@ const questions = [
   { q: "IF LEFT BECOMES TFEL, WHAT DOES RIGHT BECOME?", a: "THGIR" }
 ];
 
+// ===============================
+// BACKGROUND AUDIO (PRE-RECORDED)
+// ===============================
+const backgroundAudio = new Audio("signal.mp3");
+backgroundAudio.loop = true;
+backgroundAudio.volume = 0;
+
+// Mobile-friendly volume
+const TARGET_VOLUME = window.innerWidth < 600 ? 0.35 : 0.5;
+
+// ===============================
+// AUDIO HELPERS
+// ===============================
+function fadeInAudio() {
+  backgroundAudio.play();
+  let vol = 0;
+  const fade = setInterval(() => {
+    if (vol < TARGET_VOLUME) {
+      vol += 0.05;
+      backgroundAudio.volume = vol;
+    } else {
+      clearInterval(fade);
+    }
+  }, 200);
+}
+
+function fadeOutAudio() {
+  let vol = backgroundAudio.volume;
+  const fade = setInterval(() => {
+    if (vol > 0.05) {
+      vol -= 0.05;
+      backgroundAudio.volume = vol;
+    } else {
+      backgroundAudio.pause();
+      backgroundAudio.currentTime = 0;
+      clearInterval(fade);
+    }
+  }, 200);
+}
+
+// ===============================
+// START EXPERIENCE
+// ===============================
 function startSignal() {
   const name = document.getElementById("username").value.trim();
   if (!name) return;
@@ -15,6 +61,10 @@ function startSignal() {
   document.querySelector(".overlay").classList.remove("hidden-video");
   document.body.classList.add("video-active");
 
+  // ▶️ AUDIO STARTS WITH VIDEO
+  fadeInAudio();
+
+  // MOVE TO STORY SCREEN
   document.getElementById("screen-name").classList.add("hidden");
   document.getElementById("screen-story").classList.remove("hidden");
 
@@ -26,7 +76,14 @@ SIGNALS ARE BLEEDING THROUGH.
 THIS IS WHERE IT BEGINS.`;
 }
 
+// ===============================
+// START QUESTION
+// ===============================
 function startTest() {
+
+  // FADE OUT AUDIO BEFORE QUESTION
+  fadeOutAudio();
+
   document.getElementById("screen-story").classList.add("hidden");
   document.getElementById("screen-question").classList.remove("hidden");
 
@@ -42,6 +99,9 @@ function startTest() {
   document.getElementById("question-text").innerText = questionObj.q;
 }
 
+// ===============================
+// CHECK ANSWER
+// ===============================
 function submitAnswer() {
   const userAnswer = document.getElementById("answer").value.trim().toUpperCase();
   const correct = JSON.parse(localStorage.getItem("assignedQuestion")).a;
