@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  background: black;
+  color: #e50914;
+  font-family: monospace;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.screen {
+  text-align: center;
+  width: 90%;
+  max-width: 420px;
+}
+
+.hidden {
+  display: none;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 12px;
+  background: black;
+  border: 1px solid #e50914;
+  color: #e50914;
+}
+
+button {
+  margin-top: 16px;
+  padding: 10px 22px;
+  background: #e50914;
+  border: none;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.glitch {
+  animation: flicker 1.5s infinite;
+}
+
+@keyframes flicker {
+  0% { opacity: 1; }
+  50% { opacity: 0.65; }
+  100% { opacity: 1; }
+}
