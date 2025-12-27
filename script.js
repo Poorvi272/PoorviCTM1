@@ -10,13 +10,9 @@ function startSignal() {
   const name = document.getElementById("username").value.trim();
   if (!name) return;
 
-  localStorage.setItem("playerName", name);
-
-  // SHOW VIDEO + OVERLAY
+  // ACTIVATE VIDEO MODE
   document.getElementById("bg-video").classList.remove("hidden-video");
   document.querySelector(".overlay").classList.remove("hidden-video");
-
-  // REMOVE FOG BACKGROUND
   document.body.classList.add("video-active");
 
   document.getElementById("screen-name").classList.add("hidden");
