@@ -1,49 +1,98 @@
 body {
   margin: 0;
-  background: black;
+  background: #000;
   color: #e50914;
-  font-family: monospace;
+  font-family: 'Cinzel', serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+}
+
+/* Fog + glow background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at top, rgba(229,9,20,0.18), transparent 60%),
+    radial-gradient(circle at bottom, rgba(229,9,20,0.12), transparent 60%);
+  z-index: -2;
+}
+
+/* Grain / static */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.07;
+  z-index: -1;
+  pointer-events: none;
 }
 
 .screen {
   text-align: center;
   width: 90%;
-  max-width: 420px;
+  max-width: 440px;
+  animation: float 6s ease-in-out infinite;
 }
 
 .hidden {
   display: none;
 }
 
+.big {
+  font-size: 30px;
+}
+
+.story {
+  font-size: 17px;
+  margin: 14px 0;
+}
+
+.highlight {
+  font-size: 18px;
+  letter-spacing: 3px;
+}
+
 input {
   width: 100%;
-  padding: 10px;
-  margin-top: 12px;
+  padding: 12px;
+  margin-top: 14px;
   background: black;
   border: 1px solid #e50914;
   color: #e50914;
+  font-family: inherit;
+  text-transform: uppercase;
 }
 
 button {
-  margin-top: 16px;
-  padding: 10px 22px;
+  margin-top: 18px;
+  padding: 12px 26px;
   background: #e50914;
   border: none;
   color: black;
   font-weight: bold;
+  font-family: inherit;
   cursor: pointer;
 }
 
 .glitch {
-  animation: flicker 1.5s infinite;
+  animation: flicker 1.4s infinite;
 }
 
 @keyframes flicker {
   0% { opacity: 1; }
-  50% { opacity: 0.65; }
+  50% { opacity: 0.6; }
   100% { opacity: 1; }
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
 }
