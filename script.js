@@ -10,26 +10,23 @@ const questions = [
 ];
 
 // ===============================
-// BACKGROUND AUDIO (CONTINUOUS)
-// ===============================
-const backgroundAudio = new Audio("signal.mp3");
-backgroundAudio.loop = true;
-backgroundAudio.volume = 1.0; // 🔊 FULL VOLUME
-
-// ===============================
 // START EXPERIENCE
 // ===============================
 function startSignal() {
   const name = document.getElementById("username").value.trim();
   if (!name) return;
 
+  const video = document.getElementById("bg-video");
+
   // SHOW VIDEO + OVERLAY
-  document.getElementById("bg-video").classList.remove("hidden-video");
+  video.classList.remove("hidden-video");
   document.querySelector(".overlay").classList.remove("hidden-video");
   document.body.classList.add("video-active");
 
-  // ▶️ START AUDIO WITH VIDEO
-  backgroundAudio.play();
+  // ▶️ PLAY VIDEO WITH ITS OWN AUDIO
+  video.muted = false;
+  video.volume = 1.0; // FULL VOLUME
+  video.play();
 
   // MOVE TO STORY SCREEN
   document.getElementById("screen-name").classList.add("hidden");
@@ -44,7 +41,7 @@ THIS IS WHERE IT BEGINS.`;
 }
 
 // ===============================
-// START QUESTION (AUDIO CONTINUES)
+// START QUESTION (VIDEO + AUDIO CONTINUE)
 // ===============================
 function startTest() {
   document.getElementById("screen-story").classList.add("hidden");
