@@ -1,10 +1,10 @@
-// QUESTION BANK (5 QUESTIONS)
+// QUESTION BANK (5)
 const questions = [
-  { q: "If LHC becomes SLH in the Upside Down, what does SOM become?", a: "MOS" },
-  { q: "INSTI reversed is?", a: "ITSNI" },
-  { q: "Which comes first in the Upside Down: H10 or H2?", a: "H2" },
-  { q: "Decode: CAMPUS → ?", a: "SUPMAC" },
-  { q: "If LEFT becomes TFEL, what does RIGHT become?", a: "THGIR" }
+  { q: "IF LHC BECOMES SLH IN THE UPSIDE DOWN, WHAT DOES SOM BECOME?", a: "MOS" },
+  { q: "INSTI REVERSED IS?", a: "ITSNI" },
+  { q: "WHICH COMES FIRST IN THE UPSIDE DOWN: H10 OR H2?", a: "H2" },
+  { q: "DECODE: CAMPUS → ?", a: "SUPMAC" },
+  { q: "IF LEFT BECOMES TFEL, WHAT DOES RIGHT BECOME?", a: "THGIR" }
 ];
 
 // START STORY
@@ -18,14 +18,16 @@ function startSignal() {
   document.getElementById("screen-story").classList.remove("hidden");
 
   document.getElementById("story-text").innerText =
-    `Hi ${name}… 
-There’s something strange happening at insti.
-Patterns are repeating.
-Clues don’t behave the way they should.
-Nothing here is random.`;
+`HI ${name}…
+
+SOMETHING IS WRONG AT INSTI.
+SIGNALS ARE BLEEDING THROUGH.
+PLACES DON’T BEHAVE THE SAME.
+
+NOTHING HERE IS RANDOM.`;
 }
 
-// ASSIGN RANDOM QUESTION (ONLY ONCE)
+// ASSIGN RANDOM QUESTION (ONCE PER USER)
 function startTest() {
   document.getElementById("screen-story").classList.add("hidden");
   document.getElementById("screen-question").classList.remove("hidden");
