@@ -6,9 +6,6 @@ body {
   text-transform: uppercase;
   letter-spacing: 2px;
   height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
 }
 
@@ -32,11 +29,16 @@ body::after {
   z-index: -1;
 }
 
+/* REMOVE FOG AFTER VIDEO STARTS */
+body.video-active::before,
+body.video-active::after {
+  display: none;
+}
+
 /* BACKGROUND VIDEO */
 #bg-video {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100vw;
   height: 100vh;
   object-fit: cover;
@@ -56,22 +58,25 @@ body::after {
   display: none;
 }
 
-/* REMOVE FOG WHEN VIDEO IS ACTIVE */
-body.video-active::before,
-body.video-active::after {
-  display: none;
+/* CONTENT LAYER (ALWAYS CENTERED) */
+#content {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
 }
 
-/* 🎯 CONTENT-WRAPPING BLACK BOX */
+/* BLACK CONTENT BOX (WRAPS TEXT) */
 .screen {
   text-align: center;
   padding: 26px 28px;
   background: rgba(0, 0, 0, 0.75);
   border: 1px solid rgba(229, 9, 20, 0.45);
   backdrop-filter: blur(4px);
-
-  display: inline-block;   /* KEY CHANGE */
-  max-width: 85vw;         /* mobile safety */
+  display: inline-block;
+  max-width: 85vw;
   animation: float 6s ease-in-out infinite;
 }
 
@@ -86,7 +91,7 @@ body.video-active::after {
 .story {
   font-size: 17px;
   margin: 14px auto;
-  max-width: 320px;        /* keeps box tight */
+  max-width: 320px;
 }
 
 .highlight {
