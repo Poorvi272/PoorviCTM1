@@ -12,7 +12,7 @@ body {
   overflow: hidden;
 }
 
-/* FOG BACKGROUND (ONLY FIRST SCREEN) */
+/* FOG BACKGROUND (FIRST SCREEN ONLY) */
 body::before {
   content: "";
   position: fixed;
@@ -56,19 +56,22 @@ body::after {
   display: none;
 }
 
+/* REMOVE FOG WHEN VIDEO IS ACTIVE */
 body.video-active::before,
 body.video-active::after {
   display: none;
 }
 
+/* 🎯 CONTENT-WRAPPING BLACK BOX */
 .screen {
   text-align: center;
-  width: 90%;
-  max-width: 440px;
-  padding: 26px 22px;
-  background: rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(229, 9, 20, 0.4);
+  padding: 26px 28px;
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(229, 9, 20, 0.45);
   backdrop-filter: blur(4px);
+
+  display: inline-block;   /* KEY CHANGE */
+  max-width: 85vw;         /* mobile safety */
   animation: float 6s ease-in-out infinite;
 }
 
@@ -82,7 +85,8 @@ body.video-active::after {
 
 .story {
   font-size: 17px;
-  margin: 14px 0;
+  margin: 14px auto;
+  max-width: 320px;        /* keeps box tight */
 }
 
 .highlight {
