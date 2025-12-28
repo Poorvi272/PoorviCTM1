@@ -17,7 +17,6 @@ const intro2 = document.getElementById("intro-video-2");
 const nameVideo = document.getElementById("name-video");
 const bgVideo = document.getElementById("bg-video");
 
-
 // ===============================
 // INTRO FLOW
 // ===============================
