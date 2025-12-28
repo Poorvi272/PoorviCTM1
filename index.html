@@ -9,8 +9,13 @@
 </head>
 <body>
 
-  <!-- 🔴 INTRO VIDEO (PLAYS FIRST) -->
-  <video id="intro-video" playsinline>
+  <!-- INTRO VIDEO (PLAYS FIRST, FULLSCREEN) -->
+  <video
+    id="intro-video"
+    playsinline
+    webkit-playsinline
+    preload="auto"
+  >
     <source src="background1.mp4" type="video/mp4">
   </video>
 
@@ -22,15 +27,15 @@
   <!-- DARK OVERLAY -->
   <div class="overlay hidden-video"></div>
 
-  <!-- 🔴 ROTATE PHONE MESSAGE -->
+  <!-- ROTATE PHONE OVERLAY -->
   <div id="rotate-overlay">
     <p>ROTATE YOUR PHONE</p>
   </div>
 
-  <!-- CONTENT -->
+  <!-- CONTENT LAYER -->
   <div id="content">
 
-    <!-- NAME SCREEN (HIDDEN INITIALLY) -->
+    <!-- NAME SCREEN (SHOWN AFTER INTRO) -->
     <div class="screen hidden" id="screen-name">
       <p class="glitch big">SIGNAL DETECTED</p>
       <input type="text" id="username" placeholder="ENTER YOUR NAME">
