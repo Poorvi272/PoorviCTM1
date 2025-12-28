@@ -1,3 +1,6 @@
+// ===============================
+// QUESTION BANK
+// ===============================
 const questions = [
   { q: "IF LHC BECOMES SLH IN THE UPSIDE DOWN, WHAT DOES SOM BECOME?", a: "MOS" },
   { q: "INSTI REVERSED IS?", a: "ITSNI" },
@@ -11,7 +14,9 @@ const questions = [
 // ===============================
 const introVideo = document.getElementById("intro-video");
 introVideo.volume = 1.0;
-introVideo.play();
+
+// iOS may require one tap – this still works on most browsers
+introVideo.play().catch(() => {});
 
 introVideo.onended = () => {
   introVideo.style.display = "none";
@@ -19,7 +24,7 @@ introVideo.onended = () => {
 };
 
 // ===============================
-// LANDSCAPE MODE CHECK
+// LANDSCAPE CHECK
 // ===============================
 function checkOrientation() {
   const rotateOverlay = document.getElementById("rotate-overlay");
