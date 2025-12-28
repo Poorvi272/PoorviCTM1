@@ -14,6 +14,7 @@ const questions = [
 // ===============================
 const intro1 = document.getElementById("intro-video-1");
 const intro2 = document.getElementById("intro-video-2");
+const nameVideo = document.getElementById("name-video");
 const bgVideo = document.getElementById("bg-video");
 
 // ===============================
@@ -33,6 +34,13 @@ intro1.onended = () => {
 
 intro2.onended = () => {
   intro2.style.display = "none";
+
+  // SHOW NAME SCREEN VIDEO
+  nameVideo.classList.remove("hidden-video");
+  nameVideo.volume = 1;
+  nameVideo.play();
+
+  document.querySelector(".overlay").classList.remove("hidden-video");
   document.getElementById("content").classList.remove("hidden");
 };
 
@@ -43,8 +51,12 @@ function startSignal() {
   const name = document.getElementById("username").value.trim();
   if (!name) return;
 
+  // STOP NAME VIDEO
+  nameVideo.pause();
+  nameVideo.classList.add("hidden-video");
+
+  // START STORY VIDEO
   bgVideo.classList.remove("hidden-video");
-  document.querySelector(".overlay").classList.remove("hidden-video");
   document.body.classList.add("video-active");
 
   bgVideo.volume = 1;
