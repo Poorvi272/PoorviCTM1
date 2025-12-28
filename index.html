@@ -9,17 +9,17 @@
 <body>
 
   <!-- INTRO VIDEO -->
-  <video id="intro-video" playsinline webkit-playsinline>
+  <video id="intro-video" playsinline webkit-playsinline preload="auto">
     <source src="background1.mp4" type="video/mp4">
   </video>
 
-  <!-- STORY VIDEO -->
-  <video id="bg-video" loop playsinline class="hidden-video">
+  <!-- STORY VIDEO (ALWAYS PRESENT, JUST BEHIND) -->
+  <video id="bg-video" playsinline loop muted>
     <source src="background.mp4" type="video/mp4">
   </video>
 
-  <!-- OVERLAY -->
-  <div class="overlay hidden-video"></div>
+  <!-- DARK OVERLAY -->
+  <div class="overlay"></div>
 
   <!-- CONTENT -->
   <div id="content">
@@ -61,4 +61,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
