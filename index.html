@@ -3,15 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>SeekOut Signal</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- INTRO VIDEO (PLAYS FIRST WITH SOUND) -->
-  <video id="intro-video" playsinline>
+  <!-- INTRO VIDEO 1 -->
+  <video id="intro-video-1" playsinline>
     <source src="background1.mp4" type="video/mp4">
+  </video>
+
+  <!-- INTRO VIDEO 2 -->
+  <video id="intro-video-2" playsinline class="hidden-video">
+    <source src="background2.mp4" type="video/mp4">
   </video>
 
   <!-- MAIN BACKGROUND VIDEO -->
@@ -19,7 +23,7 @@
     <source src="background.mp4" type="video/mp4">
   </video>
 
-  <!-- DARK OVERLAY -->
+  <!-- OVERLAY -->
   <div class="overlay hidden-video"></div>
 
   <!-- ROTATE WARNING -->
@@ -27,7 +31,7 @@
     ROTATE YOUR PHONE<br>TO LANDSCAPE
   </div>
 
-  <!-- MAIN CONTENT -->
+  <!-- CONTENT -->
   <div id="content" class="hidden">
 
     <div class="screen" id="screen-name">
@@ -38,7 +42,7 @@
 
     <div class="screen hidden" id="screen-story">
       <p id="story-text" class="story"></p>
-      <button onclick="startTest()">CONTINUE</button>
+      <button onclick="startTest()">READY TO HELP</button>
     </div>
 
     <div class="screen hidden" id="screen-question">
@@ -49,13 +53,23 @@
     </div>
 
     <div class="screen hidden" id="screen-success">
-      <p class="glitch big">SIGNAL STABILISED</p>
+      <p class="glitch big">SIGNAL DISRUPTED</p>
+      <p class="story">
+        You noticed the anomaly.<br>
+        Most people don’t.
+      </p>
       <p class="story highlight">SEEKOUT · 9–11 JANUARY</p>
+      <p class="story">ENTER TO SEE WHAT OTHERS MISS.</p>
     </div>
 
     <div class="screen hidden" id="screen-fail">
-      <p class="glitch big">SIGNAL LOST</p>
-      <p class="story highlight">TRY AGAIN AT SEEKOUT</p>
+      <p class="glitch big">SIGNAL STILL PERSISTS</p>
+      <p class="story">
+        You missed the first hint.<br>
+        But the signal isn’t gone.
+      </p>
+      <p class="story highlight">SEEKOUT · 9–11 JANUARY</p>
+      <p class="story">YOU CAN STILL SAVE IT.</p>
     </div>
 
   </div>
