@@ -18,7 +18,12 @@
     <source src="background2.mp4" type="video/mp4">
   </video>
 
-  <!-- MAIN BACKGROUND VIDEO -->
+  <!-- NAME SCREEN BACKGROUND VIDEO -->
+  <video loop playsinline id="name-video" class="hidden-video">
+    <source src="background3.mp4" type="video/mp4">
+  </video>
+
+  <!-- MAIN STORY BACKGROUND VIDEO -->
   <video loop playsinline id="bg-video" class="hidden-video">
     <source src="background.mp4" type="video/mp4">
   </video>
@@ -54,22 +59,14 @@
 
     <div class="screen hidden" id="screen-success">
       <p class="glitch big">SIGNAL DISRUPTED</p>
-      <p class="story">
-        You noticed the anomaly.<br>
-        Most people don’t.
-      </p>
+      <p class="story">You noticed the anomaly.</p>
       <p class="story highlight">SEEKOUT · 9–11 JANUARY</p>
-      <p class="story">ENTER TO SEE WHAT OTHERS MISS.</p>
     </div>
 
     <div class="screen hidden" id="screen-fail">
       <p class="glitch big">SIGNAL STILL PERSISTS</p>
-      <p class="story">
-        You missed the first hint.<br>
-        But the signal isn’t gone.
-      </p>
+      <p class="story">You missed the first hint.</p>
       <p class="story highlight">SEEKOUT · 9–11 JANUARY</p>
-      <p class="story">YOU CAN STILL SAVE IT.</p>
     </div>
 
   </div>
