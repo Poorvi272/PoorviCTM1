@@ -9,12 +9,7 @@
 </head>
 <body>
 
-  <!-- INTRO VIDEO (PLAYS FIRST) -->
-  <video id="intro-video" playsinline>
-    <source src="background1.mp4" type="video/mp4">
-  </video>
-
-  <!-- MAIN BACKGROUND VIDEO -->
+  <!-- BACKGROUND VIDEO (HAS AUDIO, HIDDEN INITIALLY) -->
   <video loop playsinline id="bg-video" class="hidden-video">
     <source src="background.mp4" type="video/mp4">
   </video>
@@ -22,13 +17,8 @@
   <!-- DARK OVERLAY -->
   <div class="overlay hidden-video"></div>
 
-  <!-- LANDSCAPE WARNING -->
-  <div id="rotate-warning">
-    ROTATE YOUR PHONE<br>TO LANDSCAPE
-  </div>
-
   <!-- CONTENT -->
-  <div id="content" class="hidden">
+  <div id="content">
 
     <div class="screen" id="screen-name">
       <p class="glitch big">SIGNAL DETECTED</p>
@@ -50,12 +40,16 @@
 
     <div class="screen hidden" id="screen-success">
       <p class="glitch big">SIGNAL STABILISED</p>
+      <p class="story">YOU NOTICED THE PATTERN.</p>
       <p class="story highlight">SEEKOUT · 9–11 JANUARY</p>
+      <p class="story">ENTER THE UPSIDE DOWN.</p>
     </div>
 
     <div class="screen hidden" id="screen-fail">
-      <p class="glitch big">SIGNAL LOST</p>
-      <p class="story highlight">TRY AGAIN AT SEEKOUT</p>
+      <p class="glitch big">SIGNAL DISRUPTED</p>
+      <p class="story">MOST PEOPLE MISS THE FIRST SIGN.</p>
+      <p class="story highlight">SEEKOUT · 9–11 JANUARY</p>
+      <p class="story">YOU’LL GET ANOTHER CHANCE IN THE HUNT.</p>
     </div>
 
   </div>
