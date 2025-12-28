@@ -1,6 +1,3 @@
-// ===============================
-// QUESTION BANK
-// ===============================
 const questions = [
   { q: "IF LHC BECOMES SLH IN THE UPSIDE DOWN, WHAT DOES SOM BECOME?", a: "MOS" },
   { q: "INSTI REVERSED IS?", a: "ITSNI" },
@@ -10,7 +7,34 @@ const questions = [
 ];
 
 // ===============================
-// START EXPERIENCE
+// INTRO VIDEO FLOW
+// ===============================
+const introVideo = document.getElementById("intro-video");
+introVideo.volume = 1.0;
+introVideo.play();
+
+introVideo.onended = () => {
+  introVideo.style.display = "none";
+  document.getElementById("screen-name").classList.remove("hidden");
+};
+
+// ===============================
+// LANDSCAPE MODE CHECK
+// ===============================
+function checkOrientation() {
+  const rotateOverlay = document.getElementById("rotate-overlay");
+  if (window.innerHeight > window.innerWidth) {
+    rotateOverlay.style.display = "flex";
+  } else {
+    rotateOverlay.style.display = "none";
+  }
+}
+
+window.addEventListener("resize", checkOrientation);
+checkOrientation();
+
+// ===============================
+// START STORY
 // ===============================
 function startSignal() {
   const name = document.getElementById("username").value.trim();
@@ -18,17 +42,14 @@ function startSignal() {
 
   const video = document.getElementById("bg-video");
 
-  // SHOW VIDEO + OVERLAY
   video.classList.remove("hidden-video");
   document.querySelector(".overlay").classList.remove("hidden-video");
   document.body.classList.add("video-active");
 
-  // ▶️ PLAY VIDEO WITH ITS OWN AUDIO
   video.muted = false;
-  video.volume = 1.0; // FULL VOLUME
+  video.volume = 1.0;
   video.play();
 
-  // MOVE TO STORY SCREEN
   document.getElementById("screen-name").classList.add("hidden");
   document.getElementById("screen-story").classList.remove("hidden");
 
@@ -41,36 +62,16 @@ THIS IS WHERE IT BEGINS.`;
 }
 
 // ===============================
-// START QUESTION (VIDEO + AUDIO CONTINUE)
-// ===============================
 function startTest() {
   document.getElementById("screen-story").classList.add("hidden");
   document.getElementById("screen-question").classList.remove("hidden");
 
-  let savedQuestion = localStorage.getItem("assignedQuestion");
-
-  if (!savedQuestion) {
-    const random = questions[Math.floor(Math.random() * questions.length)];
-    localStorage.setItem("assignedQuestion", JSON.stringify(random));
-    savedQuestion = JSON.stringify(random);
-  }
-
-  const questionObj = JSON.parse(savedQuestion);
-  document.getElementById("question-text").innerText = questionObj.q;
+  const q = questions[Math.floor(Math.random() * questions.length)];
+  document.getElementById("question-text").innerText = q.q;
 }
 
 // ===============================
-// CHECK ANSWER
-// ===============================
 function submitAnswer() {
-  const userAnswer = document.getElementById("answer").value.trim().toUpperCase();
-  const correct = JSON.parse(localStorage.getItem("assignedQuestion")).a;
-
   document.getElementById("screen-question").classList.add("hidden");
-
-  if (userAnswer === correct) {
-    document.getElementById("screen-success").classList.remove("hidden");
-  } else {
-    document.getElementById("screen-fail").classList.remove("hidden");
-  }
+  document.getElementById("screen-success").classList.remove("hidden");
 }
