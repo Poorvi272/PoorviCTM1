@@ -366,3 +366,13 @@ button {
   background: black;
   z-index: 10;
 }
+/* NAME SCREEN BACKGROUND VIDEO */
+#name-video {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  background: black;
+  z-index: -4;
+}
