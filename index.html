@@ -9,18 +9,13 @@
 </head>
 <body>
 
-  <!-- INTRO VIDEO (PLAYS FIRST) -->
-  <video
-    id="intro-video"
-    playsinline
-    webkit-playsinline
-    preload="auto"
-  >
+  <!-- INTRO VIDEO -->
+  <video id="intro-video" playsinline webkit-playsinline preload="auto">
     <source src="background1.mp4" type="video/mp4">
   </video>
 
-  <!-- STORY BACKGROUND VIDEO -->
-  <video loop playsinline id="bg-video" class="hidden-video">
+  <!-- STORY VIDEO -->
+  <video id="bg-video" loop playsinline class="hidden-video">
     <source src="background.mp4" type="video/mp4">
   </video>
 
@@ -30,18 +25,25 @@
   <!-- CONTENT -->
   <div id="content">
 
-    <!-- NAME SCREEN -->
+    <!-- SIGNAL TEXT -->
+    <div class="screen hidden" id="screen-signal">
+      <p class="glitch big" id="signal-text"></p>
+    </div>
+
+    <!-- NAME -->
     <div class="screen hidden" id="screen-name">
       <p class="glitch big">SIGNAL DETECTED</p>
       <input type="text" id="username" placeholder="ENTER YOUR NAME">
-      <button onclick="startSignal()">RESPOND</button>
+      <button onclick="startHelp()">READY TO HELP</button>
     </div>
 
+    <!-- STORY -->
     <div class="screen hidden" id="screen-story">
       <p id="story-text" class="story"></p>
-      <button onclick="startTest()">CONTINUE</button>
+      <button onclick="startTest()">PROCEED</button>
     </div>
 
+    <!-- QUESTION -->
     <div class="screen hidden" id="screen-question">
       <p class="glitch">TEST INCOMING</p>
       <p id="question-text" class="story"></p>
@@ -49,14 +51,12 @@
       <button onclick="submitAnswer()">TRANSMIT</button>
     </div>
 
-    <div class="screen hidden" id="screen-success">
-      <p class="glitch big">SIGNAL STABILISED</p>
-      <p class="story highlight">SEEKOUT · 9–11 JANUARY</p>
-    </div>
-
-    <div class="screen hidden" id="screen-fail">
-      <p class="glitch big">SIGNAL DISRUPTED</p>
-      <p class="story highlight">TRY AGAIN IN SEEKOUT</p>
+    <!-- RESULT -->
+    <div class="screen hidden" id="screen-result">
+      <p class="glitch big" id="result-text"></p>
+      <p class="story highlight">SEEKOUT · INSTI’S BIGGEST CRYPT HUNT</p>
+      <p class="story">9–11 JAN · ONLINE + OFFLINE</p>
+      <button onclick="goToSeekout()">ENTER SEEKOUT</button>
     </div>
 
   </div>
