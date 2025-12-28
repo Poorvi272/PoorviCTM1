@@ -10,16 +10,11 @@
 <body>
 
   <!-- INTRO VIDEO (PLAYS FIRST) -->
-  <video
-    id="intro-video"
-    playsinline
-    webkit-playsinline
-    preload="auto"
-  >
+  <video id="intro-video" playsinline>
     <source src="background1.mp4" type="video/mp4">
   </video>
 
-  <!-- STORY BACKGROUND VIDEO -->
+  <!-- MAIN BACKGROUND VIDEO -->
   <video loop playsinline id="bg-video" class="hidden-video">
     <source src="background.mp4" type="video/mp4">
   </video>
@@ -27,11 +22,15 @@
   <!-- DARK OVERLAY -->
   <div class="overlay hidden-video"></div>
 
-  <!-- CONTENT -->
-  <div id="content">
+  <!-- LANDSCAPE WARNING -->
+  <div id="rotate-warning">
+    ROTATE YOUR PHONE<br>TO LANDSCAPE
+  </div>
 
-    <!-- NAME SCREEN -->
-    <div class="screen hidden" id="screen-name">
+  <!-- CONTENT -->
+  <div id="content" class="hidden">
+
+    <div class="screen" id="screen-name">
       <p class="glitch big">SIGNAL DETECTED</p>
       <input type="text" id="username" placeholder="ENTER YOUR NAME">
       <button onclick="startSignal()">RESPOND</button>
@@ -55,8 +54,8 @@
     </div>
 
     <div class="screen hidden" id="screen-fail">
-      <p class="glitch big">SIGNAL DISRUPTED</p>
-      <p class="story highlight">TRY AGAIN IN SEEKOUT</p>
+      <p class="glitch big">SIGNAL LOST</p>
+      <p class="story highlight">TRY AGAIN AT SEEKOUT</p>
     </div>
 
   </div>
