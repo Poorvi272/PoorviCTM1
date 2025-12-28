@@ -4,24 +4,34 @@
   <meta charset="UTF-8">
   <title>SeekOut Signal</title>
 
-  <!-- Stranger Things–style font -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- BACKGROUND VIDEO (HIDDEN INITIALLY) -->
- <video loop playsinline id="bg-video" class="hidden-video">
-  <source src="background.mp4" type="video/mp4">
-</video>
+  <!-- 🔴 INTRO VIDEO (PLAYS FIRST) -->
+  <video id="intro-video" playsinline>
+    <source src="background1.mp4" type="video/mp4">
+  </video>
+
+  <!-- STORY BACKGROUND VIDEO -->
+  <video loop playsinline id="bg-video" class="hidden-video">
+    <source src="background.mp4" type="video/mp4">
+  </video>
 
   <!-- DARK OVERLAY -->
   <div class="overlay hidden-video"></div>
 
-  <!-- CONTENT LAYER -->
+  <!-- 🔴 ROTATE PHONE MESSAGE -->
+  <div id="rotate-overlay">
+    <p>ROTATE YOUR PHONE</p>
+  </div>
+
+  <!-- CONTENT -->
   <div id="content">
 
-    <div class="screen" id="screen-name">
+    <!-- NAME SCREEN (HIDDEN INITIALLY) -->
+    <div class="screen hidden" id="screen-name">
       <p class="glitch big">SIGNAL DETECTED</p>
       <input type="text" id="username" placeholder="ENTER YOUR NAME">
       <button onclick="startSignal()">RESPOND</button>
@@ -41,16 +51,12 @@
 
     <div class="screen hidden" id="screen-success">
       <p class="glitch big">SIGNAL STABILISED</p>
-      <p class="story">YOU NOTICED THE PATTERN.</p>
       <p class="story highlight">SEEKOUT · 9–11 JANUARY</p>
-      <p class="story">ENTER THE UPSIDE DOWN.</p>
     </div>
 
     <div class="screen hidden" id="screen-fail">
       <p class="glitch big">SIGNAL DISRUPTED</p>
-      <p class="story">MOST PEOPLE MISS THE FIRST SIGN.</p>
-      <p class="story highlight">SEEKOUT · 9–11 JANUARY</p>
-      <p class="story">YOU’LL GET ANOTHER CHANCE IN THE HUNT.</p>
+      <p class="story highlight">TRY AGAIN IN SEEKOUT</p>
     </div>
 
   </div>
