@@ -1,3 +1,6 @@
+/* ===============================
+   BASE STYLES
+   =============================== */
 body {
   margin: 0;
   background: black;
@@ -9,7 +12,22 @@ body {
   overflow: hidden;
 }
 
-/* Fog only for first screen */
+/* ===============================
+   INTRO VIDEO
+   =============================== */
+#intro-video {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  background: black;
+  z-index: 10;
+}
+
+/* ===============================
+   FOG BACKGROUND (BEFORE MAIN VIDEO)
+   =============================== */
 body::before {
   content: "";
   position: fixed;
@@ -29,13 +47,14 @@ body::after {
   z-index: -1;
 }
 
-/* Remove fog after video starts */
 body.video-active::before,
 body.video-active::after {
   display: none;
 }
 
-/* Background video */
+/* ===============================
+   MAIN BACKGROUND VIDEO
+   =============================== */
 #bg-video {
   position: fixed;
   inset: 0;
@@ -45,7 +64,13 @@ body.video-active::after {
   z-index: -4;
 }
 
-/* Dark overlay */
+.hidden-video {
+  display: none;
+}
+
+/* ===============================
+   OVERLAY
+   =============================== */
 .overlay {
   position: fixed;
   inset: 0;
@@ -53,12 +78,9 @@ body.video-active::after {
   z-index: -3;
 }
 
-/* Hide video initially */
-.hidden-video {
-  display: none;
-}
-
-/* Content centering */
+/* ===============================
+   CONTENT
+   =============================== */
 #content {
   position: fixed;
   inset: 0;
@@ -68,37 +90,33 @@ body.video-active::after {
   z-index: 5;
 }
 
-/* Black translucent box */
+.hidden {
+  display: none;
+}
+
+/* ===============================
+   SCREEN BOX
+   =============================== */
 .screen {
   text-align: center;
   padding: 26px 28px;
   background: rgba(0,0,0,0.75);
   border: 1px solid rgba(229,9,20,0.45);
   backdrop-filter: blur(4px);
-  display: inline-block;
   max-width: 85vw;
   animation: float 6s ease-in-out infinite;
 }
 
-.hidden {
-  display: none;
-}
+/* ===============================
+   TEXT
+   =============================== */
+.big { font-size: 30px; }
+.story { font-size: 17px; margin: 14px auto; max-width: 320px; }
+.highlight { font-size: 18px; letter-spacing: 3px; }
 
-.big {
-  font-size: 30px;
-}
-
-.story {
-  font-size: 17px;
-  margin: 14px auto;
-  max-width: 320px;
-}
-
-.highlight {
-  font-size: 18px;
-  letter-spacing: 3px;
-}
-
+/* ===============================
+   INPUTS & BUTTONS
+   =============================== */
 input {
   width: 100%;
   padding: 12px;
@@ -107,7 +125,6 @@ input {
   border: 1px solid #e50914;
   color: #e50914;
   font-family: inherit;
-  text-transform: uppercase;
 }
 
 button {
@@ -117,13 +134,13 @@ button {
   border: none;
   color: black;
   font-weight: bold;
-  font-family: inherit;
   cursor: pointer;
 }
 
-.glitch {
-  animation: flicker 1.4s infinite;
-}
+/* ===============================
+   ANIMATIONS
+   =============================== */
+.glitch { animation: flicker 1.4s infinite; }
 
 @keyframes flicker {
   0% { opacity: 1; }
@@ -135,4 +152,205 @@ button {
   0% { transform: translateY(0); }
   50% { transform: translateY(-12px); }
   100% { transform: translateY(0); }
+}
+
+/* ===============================
+   LANDSCAPE WARNING
+   =============================== */
+#rotate-warning {
+  position: fixed;
+  inset: 0;
+  background: black;
+  color: #e50914;
+  font-size: 22px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 20;
+}
+
+@media screen and (orientation: portrait) {
+  #rotate-warning { display: flex; }
+  #intro-video,
+  #bg-video,
+  #content { display: none !important; }
+}
+/* ===============================
+   BASE STYLES
+   =============================== */
+body {
+  margin: 0;
+  background: black;
+  color: #e50914;
+  font-family: 'Cinzel', serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ===============================
+   INTRO VIDEO
+   =============================== */
+#intro-video {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  background: black;
+  z-index: 10;
+}
+
+/* ===============================
+   FOG BACKGROUND (BEFORE MAIN VIDEO)
+   =============================== */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at top, rgba(229,9,20,0.18), transparent 60%),
+    radial-gradient(circle at bottom, rgba(229,9,20,0.12), transparent 60%);
+  z-index: -2;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.07;
+  z-index: -1;
+}
+
+body.video-active::before,
+body.video-active::after {
+  display: none;
+}
+
+/* ===============================
+   MAIN BACKGROUND VIDEO
+   =============================== */
+#bg-video {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -4;
+}
+
+.hidden-video {
+  display: none;
+}
+
+/* ===============================
+   OVERLAY
+   =============================== */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: -3;
+}
+
+/* ===============================
+   CONTENT
+   =============================== */
+#content {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ===============================
+   SCREEN BOX
+   =============================== */
+.screen {
+  text-align: center;
+  padding: 26px 28px;
+  background: rgba(0,0,0,0.75);
+  border: 1px solid rgba(229,9,20,0.45);
+  backdrop-filter: blur(4px);
+  max-width: 85vw;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* ===============================
+   TEXT
+   =============================== */
+.big { font-size: 30px; }
+.story { font-size: 17px; margin: 14px auto; max-width: 320px; }
+.highlight { font-size: 18px; letter-spacing: 3px; }
+
+/* ===============================
+   INPUTS & BUTTONS
+   =============================== */
+input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 14px;
+  background: black;
+  border: 1px solid #e50914;
+  color: #e50914;
+  font-family: inherit;
+}
+
+button {
+  margin-top: 18px;
+  padding: 12px 26px;
+  background: #e50914;
+  border: none;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ===============================
+   ANIMATIONS
+   =============================== */
+.glitch { animation: flicker 1.4s infinite; }
+
+@keyframes flicker {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
+
+/* ===============================
+   LANDSCAPE WARNING
+   =============================== */
+#rotate-warning {
+  position: fixed;
+  inset: 0;
+  background: black;
+  color: #e50914;
+  font-size: 22px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 20;
+}
+
+@media screen and (orientation: portrait) {
+  #rotate-warning { display: flex; }
+  #intro-video,
+  #bg-video,
+  #content { display: none !important; }
 }
