@@ -376,4 +376,29 @@ button {
   background: black;
   z-index: -4;
 }
+/* ===============================
+   TAP TO START (MOBILE ONLY)
+   =============================== */
+#tap-to-start {
+  position: fixed;
+  inset: 0;
+  background: black;
+  color: #e50914;
+  font-family: 'Cinzel', serif;
+  font-size: 22px;
+  letter-spacing: 2px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 30;
+  cursor: pointer;
+}
+
+/* SHOW TAP SCREEN ONLY ON TOUCH DEVICES */
+@media (hover: none) and (pointer: coarse) {
+  #tap-to-start {
+    display: flex;
+  }
+}
 
