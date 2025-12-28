@@ -18,13 +18,36 @@ const nameVideo = document.getElementById("name-video");
 const bgVideo = document.getElementById("bg-video");
 
 // ===============================
-// INTRO FLOW
+// VIDEO REFERENCES
 // ===============================
-window.onload = () => {
+const intro1 = document.getElementById("intro-video-1");
+const intro2 = document.getElementById("intro-video-2");
+const nameVideo = document.getElementById("name-video");
+const bgVideo = document.getElementById("bg-video");
+const tapScreen = document.getElementById("tap-to-start");
+
+// ===============================
+// MOBILE SAFE START
+// ===============================
+function startIntroFlow() {
+  tapScreen.style.display = "none";
+
   intro1.volume = 1;
   intro1.play();
-};
+}
 
+// Mobile: wait for tap
+if ("ontouchstart" in window) {
+  tapScreen.addEventListener("click", startIntroFlow);
+} 
+// Laptop: auto play
+else {
+  window.onload = startIntroFlow;
+}
+
+// ===============================
+// INTRO VIDEO CHAIN
+// ===============================
 intro1.onended = () => {
   intro1.style.display = "none";
   intro2.classList.remove("hidden-video");
@@ -35,7 +58,6 @@ intro1.onended = () => {
 intro2.onended = () => {
   intro2.style.display = "none";
 
-  // SHOW NAME SCREEN VIDEO
   nameVideo.classList.remove("hidden-video");
   nameVideo.volume = 1;
   nameVideo.play();
@@ -43,6 +65,33 @@ intro2.onended = () => {
   document.querySelector(".overlay").classList.remove("hidden-video");
   document.getElementById("content").classList.remove("hidden");
 };
+
+// // ===============================
+// // INTRO FLOW
+// // ===============================
+// window.onload = () => {
+//   intro1.volume = 1;
+//   intro1.play();
+// };
+
+// intro1.onended = () => {
+//   intro1.style.display = "none";
+//   intro2.classList.remove("hidden-video");
+//   intro2.volume = 1;
+//   intro2.play();
+// };
+
+// intro2.onended = () => {
+//   intro2.style.display = "none";
+
+//   // SHOW NAME SCREEN VIDEO
+//   nameVideo.classList.remove("hidden-video");
+//   nameVideo.volume = 1;
+//   nameVideo.play();
+
+//   document.querySelector(".overlay").classList.remove("hidden-video");
+//   document.getElementById("content").classList.remove("hidden");
+// };
 
 // ===============================
 // START MAIN EXPERIENCE
