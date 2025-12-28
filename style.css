@@ -9,7 +9,7 @@ body {
   overflow: hidden;
 }
 
-/* FOG BACKGROUND (FIRST SCREEN ONLY) */
+/* FOG BACKGROUND (BEFORE STORY VIDEO) */
 body::before {
   content: "";
   position: fixed;
@@ -29,13 +29,25 @@ body::after {
   z-index: -1;
 }
 
-/* REMOVE FOG AFTER VIDEO STARTS */
+/* REMOVE FOG ON STORY VIDEO */
 body.video-active::before,
 body.video-active::after {
   display: none;
 }
 
-/* BACKGROUND VIDEO */
+/* INTRO VIDEO – TRUE FULLSCREEN */
+#intro-video {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center;
+  z-index: 100;
+  background: black;
+}
+
+/* STORY BACKGROUND VIDEO */
 #bg-video {
   position: fixed;
   inset: 0;
@@ -53,12 +65,13 @@ body.video-active::after {
   z-index: -3;
 }
 
-/* HIDE VIDEO INITIALLY */
-.hidden-video {
+/* HIDE ELEMENT */
+.hidden-video,
+.hidden {
   display: none;
 }
 
-/* CONTENT LAYER (ALWAYS CENTERED) */
+/* CONTENT LAYER */
 #content {
   position: fixed;
   inset: 0;
@@ -68,20 +81,15 @@ body.video-active::after {
   z-index: 5;
 }
 
-/* BLACK CONTENT BOX (WRAPS TEXT) */
+/* BLACK CONTENT BOX */
 .screen {
   text-align: center;
   padding: 26px 28px;
   background: rgba(0, 0, 0, 0.75);
   border: 1px solid rgba(229, 9, 20, 0.45);
   backdrop-filter: blur(4px);
-  display: inline-block;
   max-width: 85vw;
   animation: float 6s ease-in-out infinite;
-}
-
-.hidden {
-  display: none;
 }
 
 .big {
@@ -125,32 +133,7 @@ button {
   animation: flicker 1.4s infinite;
 }
 
-@keyframes flicker {
-  0% { opacity: 1; }
-  50% { opacity: 0.6; }
-  100% { opacity: 1; }
-}
-
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-  100% { transform: translateY(0); }
-}
-/* ===============================
-   INTRO VIDEO (PLAYS FIRST)
-   =============================== */
-#intro-video {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  z-index: 10;
-}
-
-/* ===============================
-   ROTATE PHONE OVERLAY
-   =============================== */
+/* ROTATE PHONE OVERLAY */
 #rotate-overlay {
   position: fixed;
   inset: 0;
@@ -164,3 +147,14 @@ button {
   text-align: center;
 }
 
+@keyframes flicker {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
