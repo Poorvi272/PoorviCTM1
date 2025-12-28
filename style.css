@@ -1,60 +1,20 @@
-/* BASIC RESET */
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
+/* ===============================
+   BASE STYLES
+   =============================== */
 body {
+  margin: 0;
   background: black;
   color: #e50914;
   font-family: 'Cinzel', serif;
   text-transform: uppercase;
   letter-spacing: 2px;
+  height: 100vh;
+  overflow: hidden;
 }
 
 /* ===============================
-   INTRO VIDEO — TRUE FULLSCREEN
+   FOG BACKGROUND (FIRST SCREEN)
    =============================== */
-#intro-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-
-  width: 100vw;
-  height: 100dvh;              /* iOS SAFE */
-  min-height: 100vh;
-
-  object-fit: cover;
-  object-position: center;
-
-  z-index: 1000;
-  background: black;
-}
-
-/* ===============================
-   STORY BACKGROUND VIDEO
-   =============================== */
-#bg-video {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100dvh;
-  object-fit: cover;
-  z-index: -4;
-}
-
-/* DARK OVERLAY */
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.65);
-  z-index: -3;
-}
-
-/* FOG (ONLY BEFORE STORY VIDEO) */
 body::before {
   content: "";
   position: fixed;
@@ -74,12 +34,55 @@ body::after {
   z-index: -1;
 }
 
+/* REMOVE FOG AFTER MAIN VIDEO STARTS */
 body.video-active::before,
 body.video-active::after {
   display: none;
 }
 
-/* CONTENT LAYER */
+/* ===============================
+   INTRO VIDEO (PLAYS FIRST)
+   =============================== */
+#intro-video {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  background: black;
+  z-index: 10;
+}
+
+/* ===============================
+   MAIN BACKGROUND VIDEO
+   =============================== */
+#bg-video {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -4;
+}
+
+/* ===============================
+   DARK OVERLAY
+   =============================== */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: -3;
+}
+
+/* HIDE VIDEO INITIALLY */
+.hidden-video {
+  display: none;
+}
+
+/* ===============================
+   CONTENT LAYER (CENTERED)
+   =============================== */
 #content {
   position: fixed;
   inset: 0;
@@ -89,22 +92,27 @@ body.video-active::after {
   z-index: 5;
 }
 
-/* BLACK CONTENT BOX */
+/* ===============================
+   BLACK CONTENT BOX
+   =============================== */
 .screen {
   text-align: center;
   padding: 26px 28px;
   background: rgba(0, 0, 0, 0.75);
   border: 1px solid rgba(229, 9, 20, 0.45);
   backdrop-filter: blur(4px);
+  display: inline-block;
   max-width: 85vw;
   animation: float 6s ease-in-out infinite;
 }
 
-.hidden,
-.hidden-video {
+.hidden {
   display: none;
 }
 
+/* ===============================
+   TEXT STYLES
+   =============================== */
 .big {
   font-size: 30px;
 }
@@ -120,6 +128,9 @@ body.video-active::after {
   letter-spacing: 3px;
 }
 
+/* ===============================
+   INPUTS & BUTTONS
+   =============================== */
 input {
   width: 100%;
   padding: 12px;
@@ -128,6 +139,7 @@ input {
   border: 1px solid #e50914;
   color: #e50914;
   font-family: inherit;
+  text-transform: uppercase;
 }
 
 button {
@@ -137,9 +149,13 @@ button {
   border: none;
   color: black;
   font-weight: bold;
+  font-family: inherit;
   cursor: pointer;
 }
 
+/* ===============================
+   GLITCH & FLOAT ANIMATIONS
+   =============================== */
 .glitch {
   animation: flicker 1.4s infinite;
 }
@@ -156,3 +172,35 @@ button {
   100% { transform: translateY(0); }
 }
 
+/* ===============================
+   ROTATE TO LANDSCAPE WARNING
+   =============================== */
+#rotate-warning {
+  position: fixed;
+  inset: 0;
+  background: black;
+  color: #e50914;
+  font-family: 'Cinzel', serif;
+  font-size: 22px;
+  letter-spacing: 2px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 20;
+}
+
+/* ===============================
+   FORCE LANDSCAPE EXPERIENCE
+   =============================== */
+@media screen and (orientation: portrait) {
+  #rotate-warning {
+    display: flex;
+  }
+
+  #intro-video,
+  #bg-video,
+  #content {
+    display: none !important;
+  }
+}
