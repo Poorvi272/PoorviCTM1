@@ -1,23 +1,29 @@
 const intro = document.getElementById("intro-video");
 const bg = document.getElementById("bg-video");
-const overlay = document.querySelector(".overlay");
 
-const screens = ["screen-1", "screen-2", "screen-name", "screen-help", "screen-question", "screen-result"];
+const screens = [
+  "screen-1",
+  "screen-2",
+  "screen-name",
+  "screen-help",
+  "screen-question",
+  "screen-result"
+];
 
 const question = {
   q: "INSTI IN THE UPSIDE DOWN LOOKS LIKE THIS: ITSNI. WHAT HAPPENS TO LHC?",
   a: "CLH"
 };
 
-// INTRO → STORY VIDEO
+// START STORY VIDEO IMMEDIATELY (MUTED FOR AUTOPLAY)
+bg.play().catch(()=>{});
+
+// PLAY INTRO
 intro.play().catch(()=>{});
 
+// WHEN INTRO ENDS → REMOVE IT, SHOW STORY FLOW
 intro.onended = () => {
-  intro.style.display = "none";
-
-  bg.classList.remove("hidden-video");
-  overlay.classList.remove("hidden-video");
-  bg.play();
+  intro.remove();
 
   showScreen("screen-1");
 
