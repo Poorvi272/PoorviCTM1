@@ -354,3 +354,16 @@ button {
   #bg-video,
   #content { display: none !important; }
 }
+
+/* INTRO VIDEOS */
+#intro-video-1,
+#intro-video-2 {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  background: black;
+  z-index: 10;
+}
+
