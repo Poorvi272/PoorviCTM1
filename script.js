@@ -10,18 +10,29 @@ const questions = [
 ];
 
 // ===============================
-// INTRO VIDEO FLOW
+// VIDEO REFERENCES
 // ===============================
-const introVideo = document.getElementById("intro-video");
+const intro1 = document.getElementById("intro-video-1");
+const intro2 = document.getElementById("intro-video-2");
 const bgVideo = document.getElementById("bg-video");
 
+// ===============================
+// INTRO FLOW
+// ===============================
 window.onload = () => {
-  introVideo.volume = 1.0;
-  introVideo.play();
+  intro1.volume = 1;
+  intro1.play();
 };
 
-introVideo.onended = () => {
-  introVideo.style.display = "none";
+intro1.onended = () => {
+  intro1.style.display = "none";
+  intro2.classList.remove("hidden-video");
+  intro2.volume = 1;
+  intro2.play();
+};
+
+intro2.onended = () => {
+  intro2.style.display = "none";
   document.getElementById("content").classList.remove("hidden");
 };
 
@@ -36,14 +47,14 @@ function startSignal() {
   document.querySelector(".overlay").classList.remove("hidden-video");
   document.body.classList.add("video-active");
 
-  bgVideo.volume = 1.0;
+  bgVideo.volume = 1;
   bgVideo.play();
 
   document.getElementById("screen-name").classList.add("hidden");
   document.getElementById("screen-story").classList.remove("hidden");
 
   document.getElementById("story-text").innerText =
-`HI ${name}…
+`HI ${name},
 
 SOMETHING IS WRONG AT INSTI.
 SIGNALS ARE BLEEDING THROUGH.
@@ -58,13 +69,22 @@ function startTest() {
   document.getElementById("screen-question").classList.remove("hidden");
 
   const random = questions[Math.floor(Math.random() * questions.length)];
+  localStorage.setItem("answer", random.a);
   document.getElementById("question-text").innerText = random.q;
 }
 
 // ===============================
-// ANSWER
+// ANSWER CHECK
 // ===============================
 function submitAnswer() {
+  const userAnswer = document.getElementById("answer").value.trim().toUpperCase();
+  const correct = localStorage.getItem("answer");
+
   document.getElementById("screen-question").classList.add("hidden");
-  document.getElementById("screen-success").classList.remove("hidden");
+
+  if (userAnswer === correct) {
+    document.getElementById("screen-success").classList.remove("hidden");
+  } else {
+    document.getElementById("screen-fail").classList.remove("hidden");
+  }
 }
