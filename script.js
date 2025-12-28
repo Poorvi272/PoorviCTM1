@@ -1,6 +1,3 @@
-// ===============================
-// QUESTION BANK
-// ===============================
 const questions = [
   { q: "IF LHC BECOMES SLH IN THE UPSIDE DOWN, WHAT DOES SOM BECOME?", a: "MOS" },
   { q: "INSTI REVERSED IS?", a: "ITSNI" },
@@ -9,13 +6,9 @@ const questions = [
   { q: "IF LEFT BECOMES TFEL, WHAT DOES RIGHT BECOME?", a: "THGIR" }
 ];
 
-// ===============================
-// INTRO VIDEO FLOW
-// ===============================
 const introVideo = document.getElementById("intro-video");
-introVideo.volume = 1.0;
 
-// iOS may require one tap – this still works on most browsers
+// Try playing intro (may need tap on iOS)
 introVideo.play().catch(() => {});
 
 introVideo.onended = () => {
@@ -23,24 +16,6 @@ introVideo.onended = () => {
   document.getElementById("screen-name").classList.remove("hidden");
 };
 
-// ===============================
-// LANDSCAPE CHECK
-// ===============================
-function checkOrientation() {
-  const rotateOverlay = document.getElementById("rotate-overlay");
-  if (window.innerHeight > window.innerWidth) {
-    rotateOverlay.style.display = "flex";
-  } else {
-    rotateOverlay.style.display = "none";
-  }
-}
-
-window.addEventListener("resize", checkOrientation);
-checkOrientation();
-
-// ===============================
-// START STORY
-// ===============================
 function startSignal() {
   const name = document.getElementById("username").value.trim();
   if (!name) return;
@@ -51,7 +26,6 @@ function startSignal() {
   document.querySelector(".overlay").classList.remove("hidden-video");
   document.body.classList.add("video-active");
 
-  video.muted = false;
   video.volume = 1.0;
   video.play();
 
@@ -66,7 +40,6 @@ SIGNALS ARE BLEEDING THROUGH.
 THIS IS WHERE IT BEGINS.`;
 }
 
-// ===============================
 function startTest() {
   document.getElementById("screen-story").classList.add("hidden");
   document.getElementById("screen-question").classList.remove("hidden");
@@ -75,7 +48,6 @@ function startTest() {
   document.getElementById("question-text").innerText = q.q;
 }
 
-// ===============================
 function submitAnswer() {
   document.getElementById("screen-question").classList.add("hidden");
   document.getElementById("screen-success").classList.remove("hidden");
