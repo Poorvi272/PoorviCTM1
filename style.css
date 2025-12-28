@@ -1,48 +1,85 @@
+/* BASIC RESET */
 html, body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  background: black;
   overflow: hidden;
 }
 
 body {
+  background: black;
   color: #e50914;
   font-family: 'Cinzel', serif;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
 
-/* INTRO VIDEO (ON TOP INITIALLY) */
+/* ===============================
+   INTRO VIDEO — TRUE FULLSCREEN
+   =============================== */
 #intro-video {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;              /* iOS SAFE */
+  min-height: 100vh;
+
   object-fit: cover;
-  z-index: 10;
+  object-position: center;
+
+  z-index: 1000;
+  background: black;
 }
 
-/* STORY VIDEO (ALWAYS PLAYING BEHIND) */
+/* ===============================
+   STORY BACKGROUND VIDEO
+   =============================== */
 #bg-video {
   position: fixed;
   inset: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   object-fit: cover;
-  z-index: -2;
+  z-index: -4;
 }
 
-/* OVERLAY */
+/* DARK OVERLAY */
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.65);
+  background: rgba(0, 0, 0, 0.65);
+  z-index: -3;
+}
+
+/* FOG (ONLY BEFORE STORY VIDEO) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at top, rgba(229,9,20,0.18), transparent 60%),
+    radial-gradient(circle at bottom, rgba(229,9,20,0.12), transparent 60%);
+  z-index: -2;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.07;
   z-index: -1;
 }
 
-/* CONTENT */
+body.video-active::before,
+body.video-active::after {
+  display: none;
+}
+
+/* CONTENT LAYER */
 #content {
   position: fixed;
   inset: 0;
@@ -52,29 +89,34 @@ body {
   z-index: 5;
 }
 
+/* BLACK CONTENT BOX */
 .screen {
-  background: rgba(0,0,0,0.8);
-  border: 1px solid rgba(229,9,20,0.5);
-  padding: 24px;
   text-align: center;
+  padding: 26px 28px;
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(229, 9, 20, 0.45);
+  backdrop-filter: blur(4px);
   max-width: 85vw;
+  animation: float 6s ease-in-out infinite;
 }
 
-.hidden {
+.hidden,
+.hidden-video {
   display: none;
 }
 
 .big {
-  font-size: 28px;
+  font-size: 30px;
 }
 
 .story {
-  font-size: 16px;
-  margin: 12px auto;
+  font-size: 17px;
+  margin: 14px auto;
+  max-width: 320px;
 }
 
 .highlight {
-  font-size: 17px;
+  font-size: 18px;
   letter-spacing: 3px;
 }
 
@@ -90,9 +132,10 @@ input {
 
 button {
   margin-top: 18px;
-  padding: 12px 24px;
+  padding: 12px 26px;
   background: #e50914;
   border: none;
+  color: black;
   font-weight: bold;
   cursor: pointer;
 }
@@ -102,7 +145,14 @@ button {
 }
 
 @keyframes flicker {
-  0% {opacity:1;}
-  50% {opacity:0.6;}
-  100% {opacity:1;}
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
 }
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
+
