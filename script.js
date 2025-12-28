@@ -1,63 +1,54 @@
-const intro = document.getElementById("intro-video");
-const bg = document.getElementById("bg-video");
-
-const screens = [
-  "screen-1",
-  "screen-2",
-  "screen-name",
-  "screen-help",
-  "screen-question",
-  "screen-result"
+const questions = [
+  { q: "IF LHC BECOMES SLH IN THE UPSIDE DOWN, WHAT DOES SOM BECOME?", a: "MOS" },
+  { q: "INSTI REVERSED IS?", a: "ITSNI" },
+  { q: "WHICH COMES FIRST IN THE UPSIDE DOWN: H10 OR H2?", a: "H2" },
+  { q: "DECODE: CAMPUS → ?", a: "SUPMAC" },
+  { q: "IF LEFT BECOMES TFEL, WHAT DOES RIGHT BECOME?", a: "THGIR" }
 ];
 
-const question = {
-  q: "INSTI IN THE UPSIDE DOWN LOOKS LIKE THIS: ITSNI. WHAT HAPPENS TO LHC?",
-  a: "CLH"
+const introVideo = document.getElementById("intro-video");
+
+// Try playing intro (may need tap on iOS)
+introVideo.play().catch(() => {});
+
+introVideo.onended = () => {
+  introVideo.style.display = "none";
+  document.getElementById("screen-name").classList.remove("hidden");
 };
 
-// START STORY VIDEO IMMEDIATELY (MUTED FOR AUTOPLAY)
-bg.play().catch(()=>{});
+function startSignal() {
+  const name = document.getElementById("username").value.trim();
+  if (!name) return;
 
-// PLAY INTRO
-intro.play().catch(()=>{});
+  const video = document.getElementById("bg-video");
 
-// WHEN INTRO ENDS → REMOVE IT, SHOW STORY FLOW
-intro.onended = () => {
-  intro.remove();
+  video.classList.remove("hidden-video");
+  document.querySelector(".overlay").classList.remove("hidden-video");
+  document.body.classList.add("video-active");
 
-  showScreen("screen-1");
+  video.volume = 1.0;
+  video.play();
 
-  setTimeout(() => showScreen("screen-2"), 2500);
-  setTimeout(() => showScreen("screen-name"), 5000);
-};
+  document.getElementById("screen-name").classList.add("hidden");
+  document.getElementById("screen-story").classList.remove("hidden");
 
-function showScreen(id) {
-  screens.forEach(s => document.getElementById(s).classList.add("hidden"));
-  document.getElementById(id).classList.remove("hidden");
+  document.getElementById("story-text").innerText =
+`HI ${name}…
+
+SOMETHING IS WRONG AT INSTI.
+SIGNALS ARE BLEEDING THROUGH.
+THIS IS WHERE IT BEGINS.`;
 }
 
-let userName = "";
+function startTest() {
+  document.getElementById("screen-story").classList.add("hidden");
+  document.getElementById("screen-question").classList.remove("hidden");
 
-function saveName() {
-  userName = document.getElementById("username").value.trim();
-  if (!userName) return;
-
-  document.getElementById("help-text").innerText =
-    `HI ${userName}.\n\nINSTI NEEDS YOU.\nREADY TO HELP?`;
-
-  showScreen("screen-help");
-}
-
-function showQuestion() {
-  document.getElementById("question-text").innerText = question.q;
-  showScreen("screen-question");
+  const q = questions[Math.floor(Math.random() * questions.length)];
+  document.getElementById("question-text").innerText = q.q;
 }
 
 function submitAnswer() {
-  const ans = document.getElementById("answer").value.trim().toUpperCase();
-
-  document.getElementById("result-text").innerText =
-    ans === question.a ? "SIGNAL STABILISED." : "SIGNAL DISRUPTED.";
-
-  showScreen("screen-result");
+  document.getElementById("screen-question").classList.add("hidden");
+  document.getElementById("screen-success").classList.remove("hidden");
 }
